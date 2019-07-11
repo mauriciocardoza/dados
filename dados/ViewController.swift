@@ -51,6 +51,20 @@ class ViewController: UIViewController {
     }
     
     
+    
+    
+    override func becomeFirstResponder() -> Bool {
+        return true
+    }
+    
+    override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
+        if motion == .motionShake {
+            generar_dados()
+        }
+    }
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
