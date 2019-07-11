@@ -30,8 +30,24 @@ class ViewController: UIViewController {
        
         num_derecha = Int(arc4random_uniform(ncaras))
         num_izquierda = Int(arc4random_uniform(ncaras))
-        dado_derecha.image = UIImage(named: imagen_dados[num_derecha])
-        dado_izquierda.image = UIImage(named: imagen_dados[num_izquierda])
+        
+      
+        UIView.animate(withDuration: 0.3, animations: {
+            self.dado_derecha.transform = CGAffineTransform(scaleX: 0.6, y: 0.6).concatenating(CGAffineTransform(rotationAngle: CGFloat.pi/2)).concatenating(CGAffineTransform(translationX: -100, y: 100))
+            
+            self.dado_izquierda.transform = CGAffineTransform(scaleX: 0.6, y: 0.6).concatenating(CGAffineTransform(rotationAngle: CGFloat.pi/2)).concatenating(CGAffineTransform(translationX: 100, y: 100))
+            self.dado_derecha.alpha = 0.0
+            self.dado_izquierda.alpha = 0.0
+            
+            
+        }, completion: (({ (completed) in
+            self.dado_derecha.transform = CGAffineTransform.identity
+             self.dado_izquierda.transform = CGAffineTransform.identity
+            self.dado_izquierda.image = UIImage(named: self.imagen_dados[self.num_izquierda])
+            self.dado_derecha.image = UIImage(named: self.imagen_dados[self.num_derecha])
+            self.dado_derecha.alpha = 1.0
+            self.dado_izquierda.alpha = 1.0
+        })))
     }
     
     
